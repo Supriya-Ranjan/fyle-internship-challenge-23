@@ -1,0 +1,77 @@
+<!-- profile-section -->
+<div class="flex justify-start items-center w-full h-4/12">
+  <div class="w-4/12">
+    <img class="w-40 h-40 mx-24 my-5 rounded-full border-solid border-2 border-black-500" *ngIf="getUser == 0" src="../../../assets/img/1.png" alt="">
+    <img class="w-40 h-40 mx-24 my-5 rounded-full border-solid border-2 border-black-500" *ngIf="getUser == 1" src="{{userId?.avatar_url}}" alt="">
+    <h2 class="mt-3 pl-8 pr-20 font-mono text-base tracking-tighter font-semibold text-slate-700"><i class="fa-solid fa-link pr-2"></i>{{userId?.html_url}}</h2>
+  </div>
+    
+  <div class="font-mono text-1xl tracking-tight font-normal text-slate-50 ">
+    <h1 class="text-3xl font-bold my-2 mx-1">{{getUser == 1 ? userId?.name : ""}}</h1>
+    <h2 class="my-2 mx-1">{{getUser == 1 ? userId?.bio : ""}}</h2>
+    <h2 class="my-2 mx-1"><i class="fa-solid fa-location-dot mr-2"></i>{{getUser == 1 ? userId?.location: ""}}</h2>
+    <h2 class="my-2 mx-1">Twitter: {{getUser == 1 ? userId?.twitter_username: ""}}</h2>
+  </div>
+</div>
+
+  <!-- Repo-Section -->
+  <div class="flex justify-evenly items-center flex-wrap w-full mt-4"  *ngIf="getRepo == 0">
+    <div class="border-2 border-cyan-950 rounded-md w-4/12 h-4/12 my-3 mx-7">
+      <div class="mx-5 mt-3 w-60 border-2 border-gray-300 bg-gray-300 rounded-md text-gray-300">box</div>
+      <div class="mx-5 mt-3 w-60 border-2 border-gray-300 bg-gray-300 rounded-md text-gray-300">box</div>
+      <div class="font-mono text-1xl tracking-tight font-normal text-gray-300 px-5 pt-3 mb-5">
+        <button class="mx-2 border-2 border-gray-300 bg-gray-300 rounded-md">javascript</button>
+        <button class="mx-2 border-2 border-gray-300 bg-gray-300 rounded-md">javascript</button>
+        <button class="mx-2 border-2 border-gray-300 bg-gray-300 rounded-md">javascript</button>
+      </div>
+    </div>
+    <div class="border-2 border-cyan-950 rounded-md w-4/12 h-4/12 my-3 mx-7">
+      <div class="mx-5 mt-3 w-60 border-2 border-gray-300 bg-gray-300 rounded-md text-gray-300">box</div>
+      <div class="mx-5 mt-3 w-60 border-2 border-gray-300 bg-gray-300 rounded-md text-gray-300">box</div>
+      <div class="font-mono text-1xl tracking-tight font-normal text-gray-300 px-5 pt-3 mb-5">
+        <button class="mx-2 border-2 border-gray-300 bg-gray-300 rounded-md">javascript</button>
+        <button class="mx-2 border-2 border-gray-300 bg-gray-300 rounded-md">javascript</button>
+        <button class="mx-2 border-2 border-gray-300 bg-gray-300 rounded-md">javascript</button>
+      </div>
+    </div>
+    <div class="border-2 border-cyan-950 rounded-md w-4/12 h-4/12 my-3 mx-7">
+      <div class="mx-5 mt-3 w-60 border-2 border-gray-300 bg-gray-300 rounded-md text-gray-300">box</div>
+      <div class="mx-5 mt-3 w-60 border-2 border-gray-300 bg-gray-300 rounded-md text-gray-300">box</div>
+      <div class="font-mono text-1xl tracking-tight font-normal text-gray-300 px-5 pt-3 mb-5">
+        <button class="mx-2 border-2 border-gray-300 bg-gray-300 rounded-md">javascript</button>
+        <button class="mx-2 border-2 border-gray-300 bg-gray-300 rounded-md">javascript</button>
+        <button class="mx-2 border-2 border-gray-300 bg-gray-300 rounded-md">javascript</button>
+      </div>
+    </div>
+    <div class="border-2 border-cyan-950 rounded-md w-4/12 h-4/12 my-3 mx-7">
+      <div class="mx-5 mt-3 w-60 border-2 border-gray-300 bg-gray-300 rounded-md text-gray-300">box</div>
+      <div class="mx-5 mt-3 w-60 border-2 border-gray-300 bg-gray-300 rounded-md text-gray-300">box</div>
+      <div class="font-mono text-1xl tracking-tight font-normal text-gray-300 px-5 pt-3 mb-5">
+        <button class="mx-2 border-2 border-gray-300 bg-gray-300 rounded-md">javascript</button>
+        <button class="mx-2 border-2 border-gray-300 bg-gray-300 rounded-md">javascript</button>
+        <button class="mx-2 border-2 border-gray-300 bg-gray-300 rounded-md">javascript</button>
+      </div>
+    </div>
+  </div>
+
+<div class="flex justify-evenly items-center flex-wrap w-full mt-4" *ngIf="getRepo == 1">
+  <div class="border-2 border-cyan-950 rounded-md w-4/12 h-4/12 my-3 mx-7" *ngFor="let repo of repos | slice:startIndex:endIndex; let odd =odd; let even = even;">
+    <h1 class="font-mono text-1xl tracking-tight font-normal text-teal-900 px-5 pt-2">{{getRepo == 1 ? repo?.name: ""}}</h1>
+    <h2 class="font-mono text-1xl tracking-tight font-normal text-teal-900 px-5 pt-1">{{getRepo == 1 ? repo?.description: ""}}</h2> 
+    <div class="font-mono text-1xl tracking-tight font-normal text-green-200 px-5 pt-1 mb-5">
+      <button class="mx-2 border-2 border-cyan-600 bg-cyan-600 rounded-md" *ngFor="let language of languages">{{getLanguage == 1 ? language : ""}}</button>
+    </div>
+  </div>
+</div>
+
+<!-- <pagination-controls (pageChange)="p=$event" class="float-right"></pagination-controls> -->
+<!-- <pagination-controls (pageChange) = "onPageChange($event)" class="mt-4 float-right"></pagination-controls> -->
+<!-- <pagination-controls (pageChange)="onPageChange($event)" class="float-right"></pagination-controls> -->
+<!-- <app-pagination [offset]="offset" [limit]="limit" [size]="size" (pageChange)="onPageChange($event)"></app-pagination> -->
+<ul class="pagination flex justify-center items-center">
+  <li class="page-item"><a (click)="prevIndex(1)" class="page-link" href="#">Previous</a></li>
+  <li class="page-item" *ngFor="let a of getArrayLenght() let i = index">
+    <a class="page-link"  (click)="getIndex(i)" >{{i+1}}</a>
+    </li>
+  <li class="page-item"><a class="page-link" (click)="nextIndex(1)" href="#">Next</a></li>
+</ul>
