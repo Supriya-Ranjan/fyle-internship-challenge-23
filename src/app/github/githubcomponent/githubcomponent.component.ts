@@ -21,34 +21,30 @@ export class GithubcomponentComponent {
     
   }
 
-  getArrayLenght(){
-    const n: number = this.repos.length; // length of the array
-    const dynamicArray: any[] = Array.from({ length: n/this.pageSize });
-    // console.log(dynamicArray);
-    return dynamicArray;
+  getArrayLenght() {
+    return Array.from({ length: this.repos.length / this.pageSize });
   }
 
-  getIndex(pageIndex:any){
+  getIndex(pageIndex: any) {
     this.startIndex = pageIndex * this.pageSize;
-   this.endIndex = this.startIndex + this.pageSize;
-   console.log(this.startIndex);
+    this.endIndex = this.min(this.startIndex + this.pageSize, this.repos.length-1);
+    console.log(this.startIndex);
   }
-  prevIndex(length:any){
-    this.startIndex = this.endIndex - length;
-   this.endIndex = this.endIndex - this.pageSize;
-   if(this.startIndex<=0){
-    this.startIndex =0
-    this.endIndex = this.pageSize;
-   }
-    console.log(this.startIndex)
+
+  changeIndex(i: number) {
+    if (this.startIndex + this.pageSize > this.repos.length) {
+      return;
+    }
+    this.startIndex = this.startIndex + this.pageSize * i;
+    this.endIndex = this.min(this.endIndex + this.pageSize * i, this.repos.length);
+    if (this.startIndex <= 0) {
+      this.startIndex = 0;
+      this.endIndex = this.min(this.pageSize, this.repos.length);
+    }
+    console.log(this.startIndex, this.endIndex);
   }
-  nextIndex(endIndex:any){
-    this.startIndex = this.endIndex - length;
-   this.endIndex = this.endIndex - this.pageSize;
-   if(this.endIndex>=this.repos.length){
-    this.endIndex = this.repos.length;
-    //this.startIndex = this.pageSize;
-   }
-    console.log(this.endIndex)
+
+  min(a: number, b: number): number {
+    return a > b ? b : a;
   }
 }

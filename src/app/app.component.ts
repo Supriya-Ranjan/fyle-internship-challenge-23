@@ -37,20 +37,21 @@ export class AppComponent implements OnInit{
       this.inputRepo = data;
       this.getRepo = 1;
       console.warn("data", data);
-      this.getLanguageInput(name,  this.inputRepo);
+      let i = 0;
+      for (let repo of this.inputRepo) {
+       this.inputLanguage[i] = this.getLanguageInput(name, repo);
+       i++;
+      }
       //this.indexChange(0);
     });
   }
 
-  getLanguageInput(name:string, repos:any[]){
-    console.log(repos);
-    let i = 0;
-    for (let repo of repos) {
-      this.apiService.getLanguage(name, repo?.name).subscribe((data : any[]) =>{
-        this.inputLanguage[i] = data;
-        i++;
+  getLanguageInput(name:string, reponame:any){
+    console.log(reponame);
+      this.apiService.getLanguage(name, reponame?.name).subscribe((data : any) =>{
         this.getLanguage = 1;
         console.warn("data", data);
+        return data;
       });
     }
   }
@@ -72,5 +73,3 @@ export class AppComponent implements OnInit{
   //   }
   //   console.log(this.updatedRepo);
   // }
-
-}

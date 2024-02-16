@@ -59,7 +59,7 @@
     <h1 class="font-mono text-1xl tracking-tight font-normal text-teal-900 px-5 pt-2">{{getRepo == 1 ? repo?.name: ""}}</h1>
     <h2 class="font-mono text-1xl tracking-tight font-normal text-teal-900 px-5 pt-1">{{getRepo == 1 ? repo?.description: ""}}</h2> 
     <div class="font-mono text-1xl tracking-tight font-normal text-green-200 px-5 pt-1 mb-5">
-      <button class="mx-2 border-2 border-cyan-600 bg-cyan-600 rounded-md" *ngFor="let language of languages">{{getLanguage == 1 ? language : ""}}</button>
+      <button class="mx-2 border-2 border-cyan-600 bg-cyan-600 rounded-md" *ngFor="let language of languages">{{getLanguage == 1 ? language?.element : ""}}</button>
     </div>
   </div>
 </div>
@@ -69,9 +69,9 @@
 <!-- <pagination-controls (pageChange)="onPageChange($event)" class="float-right"></pagination-controls> -->
 <!-- <app-pagination [offset]="offset" [limit]="limit" [size]="size" (pageChange)="onPageChange($event)"></app-pagination> -->
 <ul class="pagination flex justify-center items-center">
-  <li class="page-item"><a (click)="prevIndex(1)" class="page-link" href="#">Previous</a></li>
+  <li class="page-item"><a (click)="changeIndex(-1)" class="page-link" href="#">Previous</a></li>
   <li class="page-item" *ngFor="let a of getArrayLenght() let i = index">
     <a class="page-link"  (click)="getIndex(i)" >{{i+1}}</a>
     </li>
-  <li class="page-item"><a class="page-link" (click)="nextIndex(1)" href="#">Next</a></li>
+  <li class="page-item"><a class="page-link" (click)="changeIndex(1)" href="#">Next</a></li>
 </ul>
